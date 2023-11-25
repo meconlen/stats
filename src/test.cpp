@@ -1,6 +1,127 @@
 #include <iostream>
+#include <vector>
+
+#include <gtest/gtest.h>
+
+#include "sum.hpp"
+
+TEST(sum, 0)
+{
+   std::vector<int> x{};
+   int s = stats::sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 0);
+}
+
+TEST(sum, 1)
+{
+   std::vector<int> x{1, 2, 3};
+   int s = stats::sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 6);
+}
+
+TEST(sum, 2)
+{
+   std::vector<double> x{1e-9, 1e9, 1e-9, -1e9};
+   double s = stats::sum(std::begin(x), std::end(x));
+   // this isn't actually the right result but it's the expected result for the algorithm
+   EXPECT_EQ(s, 0);
+}
+
+TEST(sum, 3)
+{
+   std::vector<float> x(100000, 1e0);
+   std::vector<float> y{1e8};
+   y.insert(std::end(y), std::begin(x), std::end(x));
+   float s = stats::sum(std::begin(y), std::end(y));
+   // not the right answer but the expected answer
+   EXPECT_EQ(s, 1e8);  
+}
+
+TEST(sum, kahan_example)
+{
+   std::vector<float> x{1000000.0, 3.14159265, 2.7182818284};
+   float s = stats::sum(std::begin(x), std::end(x));
+   // this isn't correct but is expected
+   EXPECT_EQ(s, 1000005.8125);
+}
+
+TEST(sorted_sum, 0)
+{
+   std::vector<int> x{};
+   int s = stats::sorted_sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 0);
+}
+
+TEST(sorted_sum, 1)
+{
+   std::vector<int> x{1, 2, 3};
+   int s = stats::sorted_sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 6);
+}
+
+TEST(sorted_sum, 2)
+{
+   std::vector<double> x{1e-9, 1e9, 1e-9, -1e9};
+   double s = stats::sorted_sum(std::begin(x), std::end(x));
+   // this isn't actually the right result but it's the expected result for the algorithm
+   EXPECT_EQ(s, 0);
+}
+
+TEST(sorted_sum, 3)
+{
+   std::vector<float> x(100000, 1e0);
+   std::vector<float> y{1e8};
+   y.insert(std::end(y), std::begin(x), std::end(x));
+   float s = stats::sorted_sum(std::begin(y), std::end(y));
+   // not the right answer but the expected answer
+   EXPECT_EQ(s, 1.001e8);  
+}
+
+
+TEST(sorted_sum, kahan_example)
+{
+   std::vector<float> x{1000000.0, 3.14159265, 2.7182818284};
+   float s = stats::sorted_sum(std::begin(x), std::end(x));
+   // this isn't correct but is expected
+   EXPECT_EQ(s, 1000005.875);
+}
+
+TEST(kahan_sum, 1)
+{
+   std::vector<int> x{1, 2, 3};
+   int s = stats::kahan_sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 6);
+}
+
+TEST(kahan_sum, 2)
+{
+   std::vector<double> x{1e-9, 1e9, 1e-9, -1e9};
+   double s = stats::kahan_sum(std::begin(x), std::end(x));
+   // this isn't actually the right result but it's the expected result for the algorithm
+   EXPECT_EQ(s, 0);
+}
+
+TEST(kahan_sum, 3)
+{
+   std::vector<float> x(100000, 1e0);
+   std::vector<float> y{1e8};
+   y.insert(std::end(y), std::begin(x), std::end(x));
+   float s = stats::kahan_sum(std::begin(y), std::end(y));
+   // not the right answer but the expected answer
+   EXPECT_EQ(s, 1.001e8);  
+}
+
+TEST(kahan_sum, kahan_example)
+{
+   std::vector<float> x{1000000.0, 3.14159265, 2.7182818284};
+   float s = stats::kahan_sum(std::begin(x), std::end(x));
+   // this isn't correct but is expected
+   EXPECT_EQ(s, 1000005.875);
+}
 
 int main(int argc, char** argv)
 {
+   testing::InitGoogleTest(&argc, argv);
+   return RUN_ALL_TESTS();	
 	return 0;
 }
