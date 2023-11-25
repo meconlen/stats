@@ -122,7 +122,7 @@ TEST(kahan_sum, kahan_example)
 TEST(kahan_sum, kbn_example)
 {
    std::vector<double> x{1.0, 1e100, 1.0, -1e100};
-   float s = stats::kahan_sum(std::begin(x), std::end(x));
+   double s = stats::kahan_sum(std::begin(x), std::end(x));
    // Expected but incorrect 
    EXPECT_EQ(s, 0.0);
 }
@@ -160,10 +160,12 @@ TEST(kbn_sum, kahan_example)
    EXPECT_EQ(s, 1000005.875);
 }
 
+// This test is an improvement of kbn over kahan
+
 TEST(kbn_sum, kbn_example)
 {
    std::vector<double> x{1.0, 1e100, 1.0, -1e100};
-   float s = stats::kbn_sum(std::begin(x), std::end(x));
+   double s = stats::kbn_sum(std::begin(x), std::end(x));
    EXPECT_EQ(s, 2.0);
 }
 
