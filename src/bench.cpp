@@ -36,4 +36,29 @@ static void BM_LARGE_SUM(benchmark::State& state) {
 BENCHMARK(BM_LARGE_SUM)->MinTime(5);
 
 
+static void BM_LARGE_SORTED_SUM(benchmark::State& state) {
+   std::vector<double> x{
+      #include "test_data/1000000_doubles.txt"
+   };
+   double s;
+   for (auto _ : state)
+      benchmark::DoNotOptimize(s = stats::sorted_sum(x.begin(), x.end()));    
+}
+BENCHMARK(BM_LARGE_SORTED_SUM)->MinTime(5);
+
+
+static void BM_LARGE_KAHAN_SUM(benchmark::State& state) {
+   std::vector<double> x{
+      #include "test_data/1000000_doubles.txt"
+   };
+   double s;
+   for (auto _ : state)
+      benchmark::DoNotOptimize(s = stats::kahan_sum(x.begin(), x.end()));    
+}
+
+BENCHMARK(BM_LARGE_KAHAN_SUM)->MinTime(5);
+
+
+
+
 BENCHMARK_MAIN();

@@ -70,11 +70,11 @@ TEST(sorted_sum, 2)
 TEST(sorted_sum, 3)
 {
    std::vector<float> x(100000, 1e0);
-   std::vector<float> y{1e8};
+   std::vector<float> y{1e8, -1e8};
    y.insert(std::end(y), std::begin(x), std::end(x));
    float s = stats::sorted_sum(std::begin(y), std::end(y));
    // not the right answer but the expected answer
-   EXPECT_EQ(s, 1.001e8);  
+   EXPECT_EQ(s, 1e5);  
 }
 
 
