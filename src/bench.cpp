@@ -56,7 +56,6 @@ static void BM_LARGE_KAHAN_SUM(benchmark::State& state) {
    double s;
    for (auto _ : state)
       benchmark::DoNotOptimize(s = stats::kahan_sum(x.begin(), x.end()));    
-   std::cout << std::setprecision(17) << s << std::endl;
 }
 
 
@@ -70,7 +69,6 @@ static void BM_LARGE_KBN_SUM(benchmark::State& state) {
    double s;
    for (auto _ : state)
       benchmark::DoNotOptimize(s = stats::kbn_sum(x.begin(), x.end()));    
-   std::cout << std::setprecision(17) << s << std::endl;
 }
 
 BENCHMARK(BM_LARGE_KBN_SUM)->Iterations(2000);
@@ -83,7 +81,6 @@ static void BM_LARGE_KBK_SUM(benchmark::State& state) {
    double s;
    for (auto _ : state)
       benchmark::DoNotOptimize(s = stats::kbk_sum(x.begin(), x.end()));    
-   std::cout << std::setprecision(17) << s << std::endl;
 }
 
 BENCHMARK(BM_LARGE_KBK_SUM)->Iterations(2000);

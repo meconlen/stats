@@ -1,6 +1,7 @@
-
+#include <algorithm>
 #include <cmath>
 #include <cstdlib>
+#include <vector>
 
 namespace stats {
 
@@ -24,7 +25,6 @@ typename std::iterator_traits<It>::value_type sorted_sum(const It& begin, const 
    using T = typename std::iterator_traits<It>::value_type;
    T s{0};
    std::vector<typename std::iterator_traits<It>::value_type> x(begin, end);
-   // std::sort(x.begin(), x.end());
    std::sort(x.begin(), x.end(), [](const T& a, const T& b){ return std::abs(a) < std::abs(b); });
    return sum(x.begin(), x.end());
    return s;
