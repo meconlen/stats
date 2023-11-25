@@ -10,9 +10,9 @@ noinst_PROGRAMS = bench
 test_SOURCES = test.cpp
 test_CPPFLAGS = -I ${top_srcdir}/googletest/googletest/include/
 test_LDADD = libgtest.la
-test_LDFLAGS = -pthread
+test_LDFLAGS = -pthread -lm
 
 bench_SOURCES = bench.cpp 
-bench_LDFLAGS = -lbenchmark -pthread
+bench_LDFLAGS = -lbenchmark -pthread -lm
 
 TESTS = test

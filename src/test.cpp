@@ -119,6 +119,64 @@ TEST(kahan_sum, kahan_example)
    EXPECT_EQ(s, 1000005.875);
 }
 
+TEST(kahan_sum, kbn_example)
+{
+   std::vector<double> x{1.0, 1e100, 1.0, -1e100};
+   float s = stats::kahan_sum(std::begin(x), std::end(x));
+   // Expected but incorrect 
+   EXPECT_EQ(s, 0.0);
+}
+
+TEST(kbn_sum, 1)
+{
+   std::vector<int> x{1, 2, 3};
+   int s = stats::kbn_sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 6);
+}
+
+// This test is an improvement of kbn over kahan
+TEST(kbn_sum, 2)
+{
+   std::vector<double> x{1e-9, 1e9, 1e-9, -1e9};
+   double s = stats::kbn_sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 2e-9);
+}
+
+TEST(kbn_sum, 3)
+{
+   std::vector<float> x(100000, 1e0);
+   std::vector<float> y{1e8};
+   y.insert(std::end(y), std::begin(x), std::end(x));
+   float s = stats::kbn_sum(std::begin(y), std::end(y));
+   // not the right answer but the expected answer
+   EXPECT_EQ(s, 1.001e8);  
+}
+
+TEST(kbn_sum, kahan_example)
+{
+   std::vector<float> x{1000000.0, 3.14159265, 2.7182818284};
+   float s = stats::kbn_sum(std::begin(x), std::end(x));
+   // this isn't correct but is expected
+   EXPECT_EQ(s, 1000005.875);
+}
+
+TEST(kbn_sum, kbn_example)
+{
+   std::vector<double> x{1.0, 1e100, 1.0, -1e100};
+   float s = stats::kbn_sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 2.0);
+}
+
+
+
+TEST(kbk_sum, kahan_example)
+{
+   std::vector<float> x{1000000.0, 3.14159265, 2.7182818284};
+   float s = stats::kbk_sum(std::begin(x), std::end(x));
+   // this isn't correct but is expected
+   EXPECT_EQ(s, 1000005.875);
+}
+
 int main(int argc, char** argv)
 {
    testing::InitGoogleTest(&argc, argv);
