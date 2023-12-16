@@ -1,9 +1,11 @@
+#include <cstdint>
 #include <iostream>
 #include <vector>
 
 #include <gtest/gtest.h>
 
 #include "sum.hpp"
+#include "binom.hpp"
 
 TEST(sum, 0)
 {
@@ -171,12 +173,58 @@ TEST(kbn_sum, kbn_example)
 
 
 
+TEST(kbk_sum, 1)
+{
+   std::vector<int> x{1, 2, 3};
+   int s = stats::kbk_sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 6);
+}
+
+// This test is an improvement of kbn over kahan
+TEST(kbk_sum, 2)
+{
+   std::vector<double> x{1e-9, 1e9, 1e-9, -1e9};
+   double s = stats::kbk_sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 2e-9);
+}
+
+TEST(kbk_sum, 3)
+{
+   std::vector<float> x(100000, 1e0);
+   std::vector<float> y{1e8};
+   y.insert(std::end(y), std::begin(x), std::end(x));
+   float s = stats::kbk_sum(std::begin(y), std::end(y));
+   // not the right answer but the expected answer
+   EXPECT_EQ(s, 1.001e8);  
+}
+
 TEST(kbk_sum, kahan_example)
 {
    std::vector<float> x{1000000.0, 3.14159265, 2.7182818284};
    float s = stats::kbk_sum(std::begin(x), std::end(x));
    // this isn't correct but is expected
    EXPECT_EQ(s, 1000005.875);
+}
+
+// This test is an improvement of kbn over kahan
+
+TEST(kbk_sum, kbn_example)
+{
+   std::vector<double> x{1.0, 1e100, 1.0, -1e100};
+   double s = stats::kbk_sum(std::begin(x), std::end(x));
+   EXPECT_EQ(s, 2.0);
+}
+
+TEST(binom, 1)
+{
+   uint64_t r = stats::binom(uint64_t(3), uint64_t(2));
+   EXPECT_EQ(r,3);
+}
+
+TEST(binom, 2)
+{
+   uint64_t r = stats::binom(uint64_t(30), uint64_t(20));
+   EXPECT_EQ(r,30045015);
 }
 
 int main(int argc, char** argv)
