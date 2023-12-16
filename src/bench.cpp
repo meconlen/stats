@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "sum.hpp"
+#include "binom.hpp"
 
 #include <benchmark/benchmark.h>
 
@@ -85,6 +86,12 @@ static void BM_LARGE_KBK_SUM(benchmark::State& state) {
 
 BENCHMARK(BM_LARGE_KBK_SUM)->Iterations(2000);
 
+static void BM_BINOM(benchmark::State& state) {
+   uint64_t x;
+   for (auto _ : state)
+      benchmark::DoNotOptimize(x = stats::binom(300, 150));
+}
 
+BENCHMARK(BM_BINOM);
 
 BENCHMARK_MAIN();
