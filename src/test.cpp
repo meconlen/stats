@@ -6,6 +6,7 @@
 
 #include "sum.hpp"
 #include "binom.hpp"
+#include "uniform_distribution.hpp"
 
 TEST(sum, 0)
 {
@@ -214,6 +215,30 @@ TEST(kbk_sum, kbn_example)
    double s = stats::kbk_sum(std::begin(x), std::end(x));
    EXPECT_EQ(s, 2.0);
 }
+
+TEST(uniform_probability_function, 1)
+{
+   double r = stats::uniform_probability_function(1, 1, 1);
+   EXPECT_NEAR(r, double{1}, 1e-10);
+}
+
+TEST(uniform_probability_function, 2)
+{
+   double r = stats::uniform_probability_function(0, 4, 1);
+   EXPECT_NEAR(r, double{0.2}, 1e-10);
+}
+
+TEST(uniform_probability_function, 3)
+{
+   double r = stats::uniform_probability_function(0, 4, -1);
+   EXPECT_NEAR(r, double{0.0}, 1e-10);
+}
+TEST(uniform_probability_function, 4)
+{
+   double r = stats::uniform_probability_function(0, 4, 5);
+   EXPECT_NEAR(r, double{0.0}, 1e-10);
+}
+
 
 TEST(BinomialCoefficient, 1)
 {
