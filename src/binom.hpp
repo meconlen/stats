@@ -5,7 +5,7 @@ namespace stats {
 // This assumees  that n, k are integer types
 
 template<typename T>
-T BinomialCoefficient(const T& n, const T& k)
+T binomial_coefficient(const T& n, const T& k)
 {
    // we note that (n, k) = (n-1, k-1) * (n/k)
    // note also that k divides (n-1, k-1) * n since (n, k) is an integer. 
@@ -33,9 +33,9 @@ T BinomialCoefficient(const T& n, const T& k)
 }
 
 template<typename T, typename U>
-U BinomialProbabilityFunction(T n, T k, U p)
+U binomial_probability_function(T n, T k, U p)
 {
-   return U(BinomialCoefficient(n, k)) * std::pow(p, k) * std::pow((1-p), (n-k));
+   return U(binomial_coefficient(n, k)) * std::pow(p, k) * std::pow((1-p), (n-k));
 }
 
 }

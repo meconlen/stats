@@ -89,7 +89,7 @@ BENCHMARK(BM_LARGE_KBK_SUM)->Iterations(2000);
 static void BM_BINOMIAL_COEFFICIENT(benchmark::State& state) {
    uint64_t x;
    for (auto _ : state)
-      benchmark::DoNotOptimize(x = stats::BinomialCoefficient(300, 150));
+      benchmark::DoNotOptimize(x = stats::binomial_coefficient(300, 150));
 }
 
 BENCHMARK(BM_BINOMIAL_COEFFICIENT);
@@ -97,7 +97,7 @@ BENCHMARK(BM_BINOMIAL_COEFFICIENT);
 static void BM_BINOMIAL_PROBABILITY_FUNCTION(benchmark::State& state) {
    uint64_t x;
    for (auto _ : state)
-      benchmark::DoNotOptimize(x = stats::BinomialProbabilityFunction(300, 150, 0.1));
+      benchmark::DoNotOptimize(x = stats::binomial_probability_function(300, 150, 0.1));
 }
 
 BENCHMARK(BM_BINOMIAL_PROBABILITY_FUNCTION);

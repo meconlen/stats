@@ -240,51 +240,51 @@ TEST(uniform_probability_function, 4)
 }
 
 
-TEST(BinomialCoefficient, 1)
+TEST(binomial_coefficient, 1)
 {
-   uint64_t r = stats::BinomialCoefficient(uint64_t(3), uint64_t(2));
+   uint64_t r = stats::binomial_coefficient(uint64_t(3), uint64_t(2));
    EXPECT_EQ(r,3);
 }
 
-TEST(BinomialCoefficient, 2)
+TEST(binomial_coefficient, 2)
 {
-   uint64_t r = stats::BinomialCoefficient(uint64_t(30), uint64_t(20));
+   uint64_t r = stats::binomial_coefficient(uint64_t(30), uint64_t(20));
    EXPECT_EQ(r,30045015);
 }
 
-TEST(BinomialCoefficient, 3)
+TEST(binomial_coefficient, 3)
 {
-   int64_t r = stats::BinomialCoefficient(int64_t(30), int64_t(0));
+   int64_t r = stats::binomial_coefficient(int64_t(30), int64_t(0));
    EXPECT_EQ(r,1);
 }
 
-TEST(BinomialCoefficient, 4)
+TEST(binomial_coefficient, 4)
 {
-   int64_t r = stats::BinomialCoefficient(int64_t(30), int64_t(-1));
+   int64_t r = stats::binomial_coefficient(int64_t(30), int64_t(-1));
    EXPECT_EQ(r,0);
 }
 
-TEST(BinomialCoefficient, 5)
+TEST(binomial_coefficient, 5)
 {
-   int64_t r = stats::BinomialCoefficient(int64_t(30), int64_t(40));
+   int64_t r = stats::binomial_coefficient(int64_t(30), int64_t(40));
    EXPECT_EQ(r,0);
 }
 
-TEST(BinomialProbabilityFunction, 1)
+TEST(binomial_probability_function, 1)
 {
-   double r = stats::BinomialProbabilityFunction(uint64_t(30), uint64_t(20), double(0.1));
+   double r = stats::binomial_probability_function(uint64_t(30), uint64_t(20), double(0.1));
    EXPECT_NEAR(r, 1.0476048962981117e-13, 1e-19);
 }
 
-TEST(BinomialProbabilityFunction, 2)
+TEST(binomial_probability_function, 2)
 {
-   double r = stats::BinomialProbabilityFunction(uint64_t(30), uint64_t(0), double(0.1));
+   double r = stats::binomial_probability_function(uint64_t(30), uint64_t(0), double(0.1));
    EXPECT_NEAR(r, 0.04239115827521624, 1e-7);
 }
 
-TEST(BinomialProbabilityFunction, 3)
+TEST(binomial_probability_function, 3)
 {
-   double r = stats::BinomialProbabilityFunction(uint64_t(30), uint64_t(40), double(0.1));
+   double r = stats::binomial_probability_function(uint64_t(30), uint64_t(40), double(0.1));
    EXPECT_NEAR(r, 0.0, 1e-14);
 }
 
