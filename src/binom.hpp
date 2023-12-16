@@ -16,6 +16,9 @@ T BinomialCoefficient(const T& n, const T& k)
    if(k < 0) {
       return 0;
    }
+   if(k == 0) {
+      return 1;
+   }
    // we can start with (n-k, 0) = 1
    // but we know the next value will be 
    // (n-k+1)/1 = (n-k+1)

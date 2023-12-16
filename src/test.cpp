@@ -227,6 +227,25 @@ TEST(BinomialCoefficient, 2)
    EXPECT_EQ(r,30045015);
 }
 
+TEST(BinomialCoefficient, 3)
+{
+   int64_t r = stats::BinomialCoefficient(int64_t(30), int64_t(0));
+   EXPECT_EQ(r,1);
+}
+
+TEST(BinomialCoefficient, 4)
+{
+   int64_t r = stats::BinomialCoefficient(int64_t(30), int64_t(-1));
+   EXPECT_EQ(r,0);
+}
+
+TEST(BinomialCoefficient, 5)
+{
+   int64_t r = stats::BinomialCoefficient(int64_t(30), int64_t(40));
+   EXPECT_EQ(r,0);
+}
+
+
 TEST(BinomialProbabilityFunction, 1)
 {
    double r = stats::BinomialProbabilityFunction(uint64_t(30), uint64_t(20), double(0.1));
