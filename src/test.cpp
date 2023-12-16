@@ -215,16 +215,22 @@ TEST(kbk_sum, kbn_example)
    EXPECT_EQ(s, 2.0);
 }
 
-TEST(binom, 1)
+TEST(BinomialCoefficient, 1)
 {
-   uint64_t r = stats::binom(uint64_t(3), uint64_t(2));
+   uint64_t r = stats::BinomialCoefficient(uint64_t(3), uint64_t(2));
    EXPECT_EQ(r,3);
 }
 
-TEST(binom, 2)
+TEST(BinomialCoefficient, 2)
 {
-   uint64_t r = stats::binom(uint64_t(30), uint64_t(20));
+   uint64_t r = stats::BinomialCoefficient(uint64_t(30), uint64_t(20));
    EXPECT_EQ(r,30045015);
+}
+
+TEST(BinomialProbabilityFunction, 1)
+{
+   double r = stats::BinomialProbabilityFunction(uint64_t(30), uint64_t(20), double(0.1));
+   EXPECT_NEAR(r, 1.0476048962981117e-13, 1e-19);
 }
 
 int main(int argc, char** argv)

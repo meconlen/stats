@@ -86,12 +86,22 @@ static void BM_LARGE_KBK_SUM(benchmark::State& state) {
 
 BENCHMARK(BM_LARGE_KBK_SUM)->Iterations(2000);
 
-static void BM_BINOM(benchmark::State& state) {
+static void BM_BINOMIAL_COEFFICIENT(benchmark::State& state) {
    uint64_t x;
    for (auto _ : state)
-      benchmark::DoNotOptimize(x = stats::binom(300, 150));
+      benchmark::DoNotOptimize(x = stats::BinomialCoefficient(300, 150));
 }
 
-BENCHMARK(BM_BINOM);
+BENCHMARK(BM_BINOMIAL_COEFFICIENT);
+
+static void BM_BINOMIAL_PROBABILITY_FUNCTION(benchmark::State& state) {
+   uint64_t x;
+   for (auto _ : state)
+      benchmark::DoNotOptimize(x = stats::BinomialProbabilityFunction(300, 150, 0.1));
+}
+
+BENCHMARK(BM_BINOMIAL_PROBABILITY_FUNCTION);
+
+
 
 BENCHMARK_MAIN();

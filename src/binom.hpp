@@ -1,10 +1,11 @@
+#include <cmath>
 
 namespace stats {
 
 // This assumees  that n, k are integer types
 
 template<typename T>
-T binom(const T& n, const T& k)
+T BinomialCoefficient(const T& n, const T& k)
 {
    // we note that (n, k) = (n-1, k-1) * (n/k)
    // note also that k divides (n-1, k-1) * n since (n, k) is an integer. 
@@ -20,13 +21,18 @@ T binom(const T& n, const T& k)
    // (n-k+1)/1 = (n-k+1)
    T result = n-k+1;
    for(T i=1; i < k; i++) {
-      // result = (n-k+i-1, i-1)
-      // we compute (n-k+i, i)
+      // result = (n-k+i, i)
+      // we compute (n-k+i+1, i+1)
       result = ( result * (n-k+i+1)) / (i+1);
    }
-
    return result;
 
+}
+
+template<typename T, typename U>
+U BinomialProbabilityFunction(T n, T k, U p)
+{
+   return U(BinomialCoefficient(n, k)) * std::pow(p, k) * std::pow((1-p), (n-k));
 }
 
 }
