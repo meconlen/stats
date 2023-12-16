@@ -8,7 +8,7 @@ LT_INIT
 AC_PROG_CXX([g++])
 AC_HEADER_STDC
 
-CXXFLAGS="$CXXFLAGS --std=c++0y"
+CXXFLAGS="$CXXFLAGS --std=c++17"
 LDFLAGS="$LDFLAGS"
 
 AM_PROG_AR
@@ -24,10 +24,8 @@ AC_CHECK_FUNCS([fstat])
 AC_CONFIG_FILES([Makefile
 	src/Makefile
 ])
-AC_CONFIG_SUBDIRS([
-	googletest/googletest
-	googletest/googlemock
-  src/Makefile
-  src/tools/Makefile
-])
+# AC_CONFIG_SUBDIRS([
+# 	googletest/googletest
+# 	googletest/googlemock
+# ])
 AC_OUTPUT

@@ -227,14 +227,6 @@ TEST(binom, 2)
    EXPECT_EQ(r,30045015);
 }
 
-#include <gtest/gtest.h>
-
-TEST(suite, test)
-{
-	FAIL();
-	return;
-}
-
 int main(int argc, char** argv)
 {
    testing::InitGoogleTest(&argc, argv);
