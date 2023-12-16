@@ -245,11 +245,22 @@ TEST(BinomialCoefficient, 5)
    EXPECT_EQ(r,0);
 }
 
-
 TEST(BinomialProbabilityFunction, 1)
 {
    double r = stats::BinomialProbabilityFunction(uint64_t(30), uint64_t(20), double(0.1));
    EXPECT_NEAR(r, 1.0476048962981117e-13, 1e-19);
+}
+
+TEST(BinomialProbabilityFunction, 2)
+{
+   double r = stats::BinomialProbabilityFunction(uint64_t(30), uint64_t(0), double(0.1));
+   EXPECT_NEAR(r, 0.04239115827521624, 1e-7);
+}
+
+TEST(BinomialProbabilityFunction, 3)
+{
+   double r = stats::BinomialProbabilityFunction(uint64_t(30), uint64_t(40), double(0.1));
+   EXPECT_NEAR(r, 0.0, 1e-14);
 }
 
 int main(int argc, char** argv)
